@@ -1,0 +1,51 @@
+<div id="app">
+
+<nav_bar :contents="[{name:'Home',link:'menu.php'},{name:'Admin Pannel',link:'adminPannel.php'},{name:'Settings',link:'settings.php'},
+    {name:'About',link:'about.php'}]" :buttons="[{name:'SignOut',link:'logout.php',class:'bi bi-box-arrow-right'}]"></nav_bar>
+
+<side_bar :user="'<?php echo $_SESSION["USER_USERNAME"] ?>'" :logo="'<?php echo $_SESSION["USER_LOGO"] ?>'" ></side_bar>
+
+   <card :class_name="'card login-card'" :style="{width:'70%'}">
+     <div class="container mt-5 text-center">
+        <h1 class="display-4">About Us</h1>
+        <p class="lead">
+
+Welcome to TuniCima, where movie magic meets streaming convenience! At TuniCima, we're not just a movie streaming platform; we're passionate cinephiles on a mission to bring the joy of cinema to your screens.
+
+<br><strong>Our Story</strong><br>
+
+Born out of a shared love for storytelling and the magic of the silver screen, TuniCima was founded by a group of film enthusiasts who believed that everyone should have access to a treasure trove of cinematic experiences. Our journey began with a simple idea: to create a space where movie lovers could discover, relive, and share their favorite films.
+
+<br><strong>Our Mission</strong><br>
+
+At TuniCima, our mission is to be your ultimate destination for cinematic delight. We strive to provide a diverse and ever-growing library of movies and TV shows, ensuring that there's something for every mood and taste. Whether you're into heart-pounding action, heartwarming romance, or mind-bending thrillers, we've got you covered.
+
+<br><strong>Join the Community</strong><br>
+
+TuniCima is more than just a streaming platform; it's a community of fellow movie enthusiasts. Connect with like-minded individuals, share your favorite picks, and embark on a shared journey through the captivating realms of film.
+
+Thank you for choosing TuniCima as your cinematic sanctuary. Lights down, volume up, and let the streaming adventure begin!
+        <div class="mt-4">
+          <a href="#">
+              <span class="navbar-dark icon-placeholder">
+                <i class="bi bi-facebook"></i>
+              </span>
+              <span style="padding-left:10px">Facebook</span>
+          </a>
+          <a href="#" style="margin-left:2%">
+              <span class="navbar-dark icon-placeholder">
+                <i class="bi bi-whatsapp"></i>
+              </span>
+              <span style="padding-left:10px">Whatsapp</span>
+          </a>
+          <a href="#" style="margin-left:2%">
+              <span class="navbar-dark icon-placeholder">
+                <i class="bi bi-linkedin"></i>
+              </span>
+              <span style="padding-left:10px">LinkedIn</span>
+          </a>
+        </div>
+  </div>
+   </card>
+
+</div>

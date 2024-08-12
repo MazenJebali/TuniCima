@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $title ?></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> <!-- BOOTSTRAP CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"> <!-- BOOTSTRAP ICONS CDN-->
+</head>
+<body>
+    <!--CSS-->
+    <link rel="stylesheet" href="../../assets/style.css"> 
+    
+    <!--<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>--> <!--VUE JS CDN-->
+    <!--VUE JS LOCAL FILE-->
+    <script src="../../assets/vue.global.js"></script>
+
+    <?= include $template.".phtml" ?>
+
+    <!-- VUE JS -->
+  <!-- APP SETTINGS -->
+  <script src="../front/settings.js"></script>
+  <!-- CREATING VUE APP -->
+  <script>
+    const app = Vue.createApp(Settings);
+  </script>
+  <!-- APP COMPONENTS -->
+  <script src="../front/form_card.js"></script>
+  <script src="../front/nav_bar.js"></script>
+  <script src="../front/side_bar.js"></script>
+  <script src="../front/card.js"></script>
+  <script src="../front/table_component.js"></script>
+  <script src="../front/popup.js"></script>
+  <script src="../front/movie_cards.js"></script>
+  <script src="../front/box_cards.js"></script>
+  <script src="../front/box_description.js"></script>
+  <script src="../front/slide_show.js"></script>
+  <!-- MOUNTING APP -->
+  <script>
+      app.mount("#app");
+  </script>
+    <!-- Bootstrap JavaScript and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

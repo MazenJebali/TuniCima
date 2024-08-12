@@ -1,0 +1,32 @@
+<div id="app">
+
+    <nav_bar :contents="[{name:'Home',link:'menu.php'},{name:'Admin Pannel',link:'adminPannel.php'},{name:'Settings',link:'settings.php'},
+    {name:'About',link:'about.php'}]" :buttons="[{name:'SignOut',link:'logout.php',class:'bi bi-box-arrow-right'}]"></nav_bar>
+
+    <side_bar :user="'<?php echo $_SESSION["USER_USERNAME"] ?>'" :logo="'<?php echo $_SESSION["USER_LOGO"] ?>'" ></side_bar>
+
+    <slide_show :elements="[
+      <?php foreach ($SERIES as $IND => $serie): ?>
+              {src:'<?= $serie["IMG"] ?>',
+              link:'contents.php?serieID= <?=  $serie["ID"] ?>'},
+      <?php endforeach; ?>
+      ]" :style="{width:'50%',marginLeft:'30%', marginTop:'5%',border:'solid 2px rgb(71, 133, 219)',borderRadius:'10px'}">
+    </slide_show>
+
+    <card :class_name="'movie-container'">
+      <h1 class="text-light text-center" style="margin-left:30%; margin-bottom:5%">Availabe Series</h1>
+      <div class="card-columns">
+        <movie_cards :username="'<?= $_SESSION["USER_USERNAME"] ?>'" :movies="[
+        <?php foreach ($SERIES as $IND => $serie): ?>
+            {name:'<?= $serie["NAME"] ?>',
+             info:'<?= $serie["DESCRIPTION"] ?>',
+             image:'<?= $serie["IMG"] ?>',
+             rating:'<?= $serie["RATING"] ?>',
+             link:'contents.php?serieID= <?=  $serie["ID"] ?>'},
+        <?php endforeach; ?>
+        ]">
+        </movie_cards>
+      </div>
+
+    </card>
+</div>

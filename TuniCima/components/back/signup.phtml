@@ -1,0 +1,12 @@
+<div id="app">
+
+    <form_card :action="'signup.php'" :method="'post'" :inputs="[{name:'user',type:'text'},{name:'password',type:'password'},
+    {name:'confirm_password',type:'password'},{name:'file',type:'file'},{name:'link_logo',type:'text'}]" :header="'Create New Account'" 
+    :datacheck="NewAccountCheck" :toggles="['password']">
+    <div>* you can choose between inserting a logo from your local, OR insert a link for your logo into <strong>link_logo</strong><br>
+    * Max size of uploaded picture is <strong>5MB</strong>
+    </div>
+    <br><div class="alert alert-danger" role="alert" id="alert" style="display:none"></div>
+    </form_card>
+
+</div>

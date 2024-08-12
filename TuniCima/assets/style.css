@@ -1,0 +1,328 @@
+body {
+  background: url('../assets/contents/winter-background.jpg');
+  background-size:cover;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #c2bfbf;
+    background-color: #c2bfbf;
+}
+
+.login-card {
+    max-width: 60%;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    transition: 0.6s;
+}
+
+.login-card #Controlbutton {
+    width: 20%;
+    margin: 1%;
+    display: inline-block;
+}
+
+.login-card button {
+  margin-left: 1%;
+}
+
+.login-card:hover {
+    box-shadow: 0 4px 15px rgba(250, 250, 250, 0.781);
+    transform: scale(1.01);
+}
+
+.login-card-header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.login-card-body {
+    margin-top: 20px;
+}
+
+.login-btn {
+    color: #fff;
+}
+
+.form-control-dark {
+    border-color: var(--bs-gray);
+  }
+.form-control-dark:focus {
+    border-color: #fff;
+    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+  }
+  
+.text-small {
+    font-size: 85%;
+  }
+  
+.dropdown-toggle:not(:focus) {
+    outline: 0;
+}
+
+.movie-container {
+    background-color: #25202ce0;
+    padding: 3%;
+    width: 70%;
+    margin-left:20%;
+    margin-top:4%;
+    border-radius: 10px;
+    transition: 0.6s;
+}
+
+.movie-container:hover {
+    box-shadow: 0 4px 15px rgb(67, 39, 107);
+    transform: scale(1.01);
+}
+
+.movie-card {
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.movie-card img {
+    max-width: auto;
+    height: 300px;
+    transition: transform 0.6s ease;
+}
+.movie-card:hover img {
+    transform: scale(1.05);
+}
+.play-icon {
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 3rem;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.6s ease;
+}
+.movie-card:hover .play-icon {
+    opacity: 1; /* Show on hover */
+}
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    padding: 10px;
+    transform: translateY(75%); /* Initially hidden */
+    transition: transform 0.6s ease;
+}
+.movie-card:hover .movie-info {
+    transform: translateY(30%); /* Show on hover */
+    height: 100%;
+}
+.rating-box {
+    background-color: #ffc107; /* Yellow background color */
+    padding: 10px;
+    border-radius: 10px; /* Rounded edges */
+    display: inline-block;
+}
+
+.EP_card {
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    width: 100px;
+    font-weight: bold;
+    font-style: italic;
+    cursor: pointer;
+    margin-left: 2%;
+    transition: transform 0.4s;
+}
+
+.EP_card:hover {
+    box-shadow: 0 4px 15px rgba(250, 250, 250, 0.781);
+    transform: scale(1.05);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-image {
+    flex: 1;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 7px;
+    border: 5px solid rgb(0, 162, 255);
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+
+.movie-image:hover {
+    transform: scale(1.02);
+}
+
+.movie-description {
+    flex: 1;
+    padding: 20px;
+}
+
+/************************ navbar *************************/
+
+ .navbar-dark {
+    background-color: whitesmoke;
+ }
+
+  .navbar-dark .navbar-brand {
+    color: black;
+    margin-left: -10%;
+  }
+
+  .navbar-dark .navbar-brand:hover {
+    color:rgb(253, 126, 160);
+  }
+
+  .navbar-dark .navbar-nav {
+    margin-left: 10%;
+  }
+  .navbar-dark .navbar-nav .nav-link {
+    color: black;
+    transition: 0.2s ease-out;
+  }
+
+  .navbar-dark .navbar-nav .nav-link:hover {
+    color: rgb(253, 126, 160);
+    box-shadow: 0 3px 2px 0px rgb(253, 126, 160);
+  }
+
+  .navbar-dark .navbar-nav .nav-link:focus,
+  .navbar-dark .navbar-nav .nav-link:active {
+    color: rgb(253, 126, 160);
+    box-shadow: 0 3px 2px 0px rgb(253, 126, 160);
+  }
+
+  /* Padding for the search bar */
+  .navbar-dark .form-inline {
+    margin-left: 2%;
+    margin-right: 7%;
+  }
+
+  .navbar-dark .icon-placeholder {
+    background-color: transparent;
+    border: 0.1px solid rgb(104, 104, 104);
+    border-radius: 50%; /* Circle shape */
+    padding-left: 12px;
+    padding-right: 11px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    align-content: center;
+    transition: 0.2s ease-out;
+    cursor: pointer;
+  }
+
+  .navbar-dark .icon-placeholder:hover {
+    background-color: rgb(253, 126, 160);
+    color: white;
+  }
+  
+ 
+
+/*******************************************************/
+
+/************************ sidebar *************************/
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    /*left: -245px;*/
+    background: rgb(64,64,65);
+    background: linear-gradient(203deg, rgba(64,64,65,0.8548669467787114) 0%, rgba(226,222,217,0.8548669467787114) 89%);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 56px;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+  .sidebar a {
+    padding: 15px 8px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+  .sidebar a:hover {
+    background-color: #555;
+}
+
+  .sidebar .logo {
+    padding: 15px;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    font-size: 20px;
+ }
+
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 10px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+/*******************************************************/
+
+/************************ Responsive adjustments *************************/
+
+ @media (max-width: 576px) {
+    .navbar-dark .navbar-nav .nav-link {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    .navbar-dark .navbar-brand {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    .navbar-dark .form-inline {
+      margin:7%;
+    }
+  }
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 0;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+      }
+      .navbar-dark .navbar-brand {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        margin-left: 0%;
+      }
+      .navbar-dark .form-inline {
+        margin:7%;
+      }
+}
+
+/*******************************************************/

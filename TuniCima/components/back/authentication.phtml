@@ -1,0 +1,12 @@
+<div id="app">
+
+    <form_card :action="'authentication.php'" :method="'post'" :inputs="[{name:'user',type:'text'},{name:'password',type:'password'}]"
+    :datacheck="AuthentificationCheck" :toggles="['password']">
+
+    <a href="signup.php" class="btn btn-danger ml-2">Sign In</a><br>
+
+    <a href="authentication.php?visitor=1" class="link-secondary m-2"> log in as visitor</a><br>
+    <div class="alert alert-danger" role="alert" id="alert" style="display:none"></div>
+    </form_card>
+
+</div>

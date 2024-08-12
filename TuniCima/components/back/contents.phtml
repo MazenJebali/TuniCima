@@ -1,0 +1,36 @@
+<div id="app">
+
+<nav_bar :contents="[{name:'Home',link:'menu.php'},{name:'Admin Pannel',link:'adminPannel.php'},{name:'Settings',link:'settings.php'},
+{name:'About',link:'about.php'}]" :buttons="[{name:'SignOut',link:'logout.php',class:'bi bi-box-arrow-right'}]"></nav_bar>
+
+<side_bar :user="'<?php echo $_SESSION["USER_USERNAME"] ?>'" :logo="'<?php echo $_SESSION["USER_LOGO"] ?>'" ></side_bar>
+
+<!--SELECTED SEASON-->
+<?php foreach ($SEASONS as $IND => $SEASON): ?>
+<card :sty="{maxWith:'100%',opacity:0.8}" style="display:none" id="<?= $IND ?>">
+<box_description :movie="{
+    title:'<?= $SERIE["NAME"] ?>',
+    type:'<?= $SERIE["TYPE"] ?>',
+    date:'<?= $SERIE["DATE"] ?>',
+    auth:'<?= $SERIE["AUTHOR"] ?>',
+    desc:'<?= $SERIE["DESCRIPTION"] ?>',
+    EP:'<?= $SEASON["NAME"] ?>',
+    EPdesc:'<?= $SEASON["DESCRIPTION"] ?>',
+    EPdate:'<?= $SEASON["DATE"] ?>',
+    img:'<?= $SERIE["IMG"] ?>',
+    link:'episode.php?serieID=<?= $ID ?>&SEASON=<?= $SEASON["IND"] ?>'
+}">
+</box_description>
+</card>
+<?php endforeach; ?>
+<!--SEASONS-->
+<box_cards :header="'Available Seasons'" :cards="[
+    <?php foreach ($SEASONS as $IND => $SEASON): ?>
+    {
+        content:'<?= $SEASON["NAME"] ?>',
+    },
+    <?php endforeach; ?>
+]">
+</box_cards>
+
+</div>

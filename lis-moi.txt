@@ -1,0 +1,30 @@
+- ce site fonctionne sur un serveur local (wamp,devserver,etc..),
+il utilise une base de données afin d'importer les données nécessaires à son bon fonctionnement,
+ovrir le site par "TuniCima/components/back/authentification.php".
+
+-vous devez d'abord créer un compte pour accéder au site web.
+
+- chaque compte créé sera identifié comme un compte d'utilisateur et ne pourra pas accéder 
+à la section "Admin Pannel",
+afin d'améliorer votre compte en tant qu'administrateur, vous devez vous connecter au site web
+avec ce compte spécial appelée "DOMINATOR", et changer votre compte créé en type d'administrateur :
+
+************* compte DOMINATOR *************
+user : DOMINATOR
+password : wxcvbn$9
+********************************************
+
+- vous pouvez accéder au site web sans créer de compte en utilisant le lien "log in as visitor"
+mais cela ne vous permettra pas d'accéder aux sections "Admin Pannel" et "Settings".
+
+- Chaque administrateur dispose d'un certain nombre de types d'accès,
+un administrateur peut ajouter du contenu, supprimer du contenu, ajouter d'autres administrateurs,
+supprimer d'autres administrateurs et supprimer l'historique des accès.
+
+-le compte d'administrateur spécial "DOMINATOR" ne peut pas être supprimé, ni modifié par d'autres
+administrateurs.
+
+-Ce site web utilise vue js comme framework front-end en créant des composants et en les intégrant
+dans le site web, et utilise php comme langage back-end pour se connecter à la base de données 
+et récupérer les données.
+

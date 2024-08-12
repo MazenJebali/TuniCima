@@ -1,0 +1,218 @@
+<style>
+    /* Custom styles for toggled and detoggled states (admin pannel) */
+.btn-toggle {
+    margin: 5px;
+    cursor: pointer;
+}
+.btn-toggle.active {
+  background-color: #2a8df7;
+  color: #fff;
+}
+
+.btn-toggle:not(.active) {
+  background-color: gray;
+  color: #fff;
+}
+</style>
+
+<div id="app">
+        <nav_bar :contents="[{name:'Home',link:'menu.php'},{name:'Admin Pannel',link:'adminPannel.php'},{name:'Settings',link:'settings.php'},
+        {name:'About',link:'about.php'}]" :buttons="[{name:'SignOut',link:'logout.php',class:'bi bi-box-arrow-right'}]"></nav_bar>
+
+        <card :class_name="'card login-card'" :style="{width:'70%'}">
+            <!--USER TABLE-->
+            <table_component :header="'Users List'" id="users" style="display:none">
+              <table class="table table-hover">
+                <tr class="table-primary">
+                    <th>UserName</th>
+                    <th>Assign</th>
+                    <th>Set Access</th>
+                </tr>
+                <?php foreach ($USERS as $IND => $USER): ?>
+                    <?php $NAME = RUN_REQ("SELECT USERNAME from user where ID = $USER[ID]",$DB)->fetch();?>
+                    
+                    <tr>
+                        <td><?= $NAME['USERNAME'] ?></td>
+                        <td>
+                        <button class="btn btn-success" title="Assign Admin" @click="show_access('user_<?= $IND ?>')">
+                          <i class="bi bi-person-add"></i></button></td> <!--ADD ADMIN-->
+
+                        <td id="user_<?= $IND ?>" style="display:none">
+                        <form action="addAdmin.php?ID= <?= $USER['ID'] ?>" method="post">
+                         <div class="btn-group-toggle" data-toggle="buttons">
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" name="ADD_ADMIN"> Add Admins
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" name="MODIFY_ADMIN"> Modify Admins
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" name="ADD_FILM"> Add Content
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" name="MODIFY_FILM"> Modify Content
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" name="ACCESS_HISTORY"> Access History
+                           </label>
+                         </div><br>
+
+                         <button type="submit" class="btn btn-primary" title="Assign Admin"><i class="bi bi-check"></i></button>
+
+                        </form>
+                        </td>
+                    </tr>
+                    
+                <?php endforeach; ?>
+              </table>
+            </table_component>
+            <!--ADMIN TABLE-->
+            <table_component :header="'Admins List'" id="admins" style="display:none">
+              <table class="table table-hover">
+                <tr class="table-primary">
+                    <th>UserName</th>
+                    <th>Modify</th>
+                    <th>Delete</th>
+                    <th>Modify Access</th>
+                </tr>
+                <?php foreach ($ADMINS as $IND => $ADMIN): ?>
+                    <?php $NAME = RUN_REQ("SELECT USERNAME from user where ID = $ADMIN[ID]",$DB)->fetch();?>
+                    <tr>
+                        <td><?= $NAME['USERNAME'] ?></td>
+                        <td><button class="btn btn-warning" title="Modify Access" @click="show_access('admin_<?= $IND ?>')"><i class="bi bi-person-gear"></i></button></td> <!--MODIFY ACCESS-->
+                        <td><a class="btn btn-danger" title="Delete Admin" href="deleteAdmin.php?ID= <?= $ADMIN['ID'] ?>"><i class="bi bi-person-dash"></i></a></td> <!--DELETE ADMIN-->
+                        
+                        <td id="admin_<?= $IND ?>" style="display:none">
+                        <form action="modifyAdmin.php?ID= <?= $ADMIN['ID'] ?>" method="post">
+                         <div class="btn-group-toggle" data-toggle="buttons">
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" <?php echo $attribute[$IND][0]; ?> name="ADD_ADMIN"> Add Admins
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" <?php echo $attribute[$IND][1]; ?> name="MODIFY_ADMIN"> Modify Admins
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" <?php echo $attribute[$IND][2]; ?> name="ADD_FILM"> Add Content
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" <?php echo $attribute[$IND][3]; ?> name="MODIFY_FILM"> Modify Content
+                           </label>
+                           <label class="btn btn-toggle">
+                            <input type="checkbox" autocomplete="off" <?php echo $attribute[$IND][4]; ?> name="ACCESS_HISTORY"> Access History
+                           </label>
+                         </div><br>
+                         
+                         <button type="submit" class="btn btn-primary" title="Modify Admin"><i class="bi bi-check"></i></button>
+                        
+                        </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+              </table>
+            </table_component>
+            <!--HISTORY TABLE-->
+            <table_component :header="'Access History'" id="history" style="display:none">
+            <a class="btn btn-danger" title="Delete History" href="deleteHistory.php"><i class="bi bi-trash"></i></a><br>
+              <table class="table table-hover">
+                <tr class="table-primary">
+                    <th>ID</th>
+                    <th>USERNAME</th>
+                    <th>DATE</th>
+                </tr>
+                <?php foreach ($HISTORYS as $IND => $HISTORY): ?>
+                    <?php $NAME = RUN_REQ("SELECT USERNAME from user where ID = $HISTORY[ID]",$DB)->fetch();?>
+                    <tr>
+                        <td><?= $HISTORY['ID'] ?></td>
+                        <td><?= $NAME['USERNAME'] ?></td>
+                        <td><?= $HISTORY['DATE_ACCESS'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+              </table>
+            </table_component>
+            <!--CONTENTS TABLE-->
+            <table_component :header="'Contents'" id="contents" style="display:none">
+              <table class="table table-hover">
+                <tr class="table-primary">
+                    <th>Series</th>
+                    <th>Current Seasons</th>
+                    <th>Current Episodes</th>
+                </tr>
+                <?php foreach ($SERIES as $IND => $SERIE): ?>
+                    <tr>
+                        <!--series-->
+                        <td><button class="btn btn-primary" title="serie" @click="show_access('season_<?= $IND ?>')">
+                          <?= $SERIE['NAME'] ?></button>
+                          <a class="btn btn-danger" title="Delete" href="deleteContent.php?content=serie&id=<?= $SERIE['ID'] ?>"><i class="bi bi-person-dash"></i></a> <!--DELETE-->
+                        </td>
+                        <!--seasons-->
+                        <td id="season_<?= $IND ?>" style="display:none">
+                          <?php $AVAISEASON = RUN_REQ("SELECT * from season where ID = $SERIE[ID]",$DB2)->fetchAll(); ?>
+                          <table>
+                          <?php foreach ($AVAISEASON as $IND => $SEASON): ?>
+                           <tr><td>
+                            <button class="btn btn-warning" title="season" @click="show_access('episodes_<?= $SEASON['IND'] ?>')">
+                            <?= $SEASON['NAME'] ?></button><br><br>
+                            <a class="btn btn-danger" title="Delete" href="deleteContent.php?content=season&id=<?= $SEASON['IND'] ?>"><i class="bi bi-person-dash"></i></a> <!--DELETE-->
+                           </td></tr>
+                          <?php endforeach; ?>
+                          <tr><td><button class="btn btn-primary" title="Add" @click="show_access('season_forum<?= $SERIE['ID'] ?>')"><i class="bi bi-plus-square"></i></button></td></tr>
+                          <tr><td id="season_forum<?= $SERIE['ID'] ?>" style="display:none">
+                          <form_card :action="'addContent.php?content=season&id=<?= $SERIE['ID'] ?>'" :method="'post'" :inputs="[{name:'seasonName',type:'text'},{name:'date',type:'date'},
+                            {name:'epNumber',type:'number'},{name:'description',type:'text'}]" :header="'none'" :buttons="[]">
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          </form_card>
+                          </td></tr>
+                          </table>
+                        </td> 
+                        <!--episodes-->
+                        <td>
+                          <table>
+                          <?php foreach ($AVAISEASON as $IND => $SEASON): ?>
+                            <tr id="episodes_<?= $SEASON['IND'] ?>" style="display:none">
+                            <?php $AVAIEPISODE = RUN_REQ("SELECT * from episode where ID = $SEASON[IND]",$DB2)->fetchAll(); ?>
+                            <?php foreach ($AVAIEPISODE as $IND => $EPISODE): ?>
+                            <td>
+                              <button class="btn btn-secondary" title="episode">
+                              <?= $EPISODE['NAME'] ?></button><br><br>
+                              <a class="btn btn-danger" title="Delete" href="deleteContent.php?content=episode&id=<?= $EPISODE['IND'] ?>">
+                              <i class="bi bi-person-dash"></i></a> <!--DELETE-->
+                            </td>
+                            <?php endforeach; ?>
+                            <td><button class="btn btn-primary" title="Add" @click="show_access('episode_forum<?= $SEASON['IND'] ?>')"><i class="bi bi-plus-square"></i></button></td>
+                            <td id="episode_forum<?= $SEASON['IND'] ?>" style="display:none">
+                            <form_card :action="'addContent.php?content=episode&id=<?= $SEASON['IND'] ?>'" :method="'post'" :inputs="[{name:'episodeName',type:'text'},{name:'date',type:'date'}]" :header="'none'" :buttons="[]">
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </form_card></td>
+                            </tr>
+                          <?php endforeach; ?>
+                            </table>
+                        </td>
+                        
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                      <td><button class="btn btn-success" title="Add" data-toggle="modal" data-target="#POPserie"><i class="bi bi-plus-square"></i></button></td>
+                </tr>
+              </table>
+            </table_component><br>
+            <!--AVAILABLE COMMANDS-->
+            <button id="Controlbutton" @click="show_table('users')" class="btn btn-outline-primary">Add Admin</button>
+            <button id="Controlbutton" @click="show_table('admins')" class="btn btn-outline-primary">Modify Admin</button>
+            <button id="Controlbutton" @click="show_table('contents')" class="btn btn-outline-primary">Contents</button>
+            <button id="Controlbutton" @click="show_table('history')" class="btn btn-outline-primary">History</button><br>
+            <p>* click <strong>twice</strong> on the button to hide element</p>
+        </card>
+
+      <popup :id="'POPserie'" :header="'Add content'" :content="'Please do your modification here and press confirm'">
+
+        <form_card :action="'addContent.php?content=serie&id='" :method="'post'" :inputs="[{name:'serieName',type:'text'},{name:'author',type:'text'},
+        {name:'description',type:'text'},{name:'image',type:'file'},{name:'rating',type:'number'},{name:'date',type:'date'},
+        {name:'genre',type:'text'}]" :header="'none'" :buttons="[]">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </form_card>
+
+      </popup>
+</div>
